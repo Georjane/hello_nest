@@ -11,7 +11,10 @@ interface JwtPayload {
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
-  constructor(config: ConfigService,private prisma: PrismaService) {
+  constructor(
+    config: ConfigService,
+    private prisma: PrismaService,
+  ) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       ignoreExpiration: false,
@@ -22,14 +25,14 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
   async validate(payload: JwtPayload) {
     // This will attach user info to req.user
     const user = await this.prisma.user.findUnique({
-        where: {
-            id: payload.sub
-        }
-    })
+      where: {
+        id: payload.sub,
+      },
+    });
     // delete user.hash
     // return user;
-     if (!user) return null;
+    if (!user) return null;
     const { hash: _, ...userWithoutHash } = user; // ✅ exclude hash safely
-  return userWithoutHash;
+    return userWithoutHash;
   }
 }

@@ -5,6 +5,6 @@ import { PrismaService } from 'src/prisma/prisma.service';
 
 @Module({
   controllers: [BookmarkController],
-  providers: [BookmarkService, PrismaService]
+  providers: [BookmarkService, PrismaService],
 })
 export class BookmarkModule {}
