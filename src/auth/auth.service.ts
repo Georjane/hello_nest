@@ -78,7 +78,7 @@ const user = await this.prisma.user.create({
         const secret = this.config.get('JWT_SECRET');
 
         const token = await this.jwt.signAsync(payload, {
-            expiresIn: '15m',
+            expiresIn: '60m',
             secret: secret
         })
         return {access_token: token,}
