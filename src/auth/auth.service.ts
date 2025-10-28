@@ -23,7 +23,9 @@ const hash = await argon.hash(dto.password)
 const user = await this.prisma.user.create({
     data: {
         email: dto.email,
-        hash
+        hash,
+        firstName: dto.firstName, 
+        lastsName: dto.lastsName,
     }
 
     })

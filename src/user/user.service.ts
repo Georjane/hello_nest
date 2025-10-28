@@ -22,6 +22,8 @@ export class UserService {
       });
     }
 
+    // add methods to catch errors
+
     async updateUser(id: number, dto: UpdateUserDto) {
       return this.prisma.user.update({
         where: {id},
