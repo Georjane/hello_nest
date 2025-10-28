@@ -21,78 +21,298 @@
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+# 🚀 Hello Nest API
 
-## Project setup
+A **secure and scalable REST API** built with **NestJS**, **Prisma ORM**, and **PostgreSQL**.
+This API provides user authentication, profile management, and personal bookmark management.
 
-```bash
-$ npm install
+---
+
+## 📚 Table of Contents
+
+* [Features](#-features)
+* [Tech Stack](#-tech-stack)
+* [API Endpoints](#-api-endpoints)
+* [Project Structure](#-project-structure)
+* [Setup & Installation](#-setup--installation)
+* [Running the Application](#-running-the-application)
+* [Database Setup & Seeding](#-database-setup--seeding)
+* [Environment Variables](#-environment-variables)
+* [Deployment](#-deployment)
+* [Testing with Postman](#-testing-with-postman)
+* [License](#-license)
+
+---
+
+## ✨ Features
+
+✅ Secure **JWT authentication**
+✅ User **signup, signin, update, delete**
+✅ Role-based access control (secure routes)
+✅ CRUD operations for **bookmarks**
+✅ Centralized validation with `ValidationPipe`
+✅ Prisma ORM integration with PostgreSQL
+
+---
+
+## 🧰 Tech Stack
+
+| Tool / Framework                        | Purpose                         |
+| --------------------------------------- | ------------------------------- |
+| **NestJS**                              | Backend framework               |
+| **Prisma**                              | ORM for database operations     |
+| **PostgreSQL**                          | Relational database             |
+| **JWT**                                 | Authentication                  |
+| **argon2**                              | Password encryption             |
+| **class-validator / class-transformer** | Request data validation         |
+
+
+---
+
+## 🧭 API Endpoints
+
+### 🧑 Authentication
+
+| Method | Endpoint       | Description           |
+| ------ | -------------- | --------------------- |
+| `POST` | `/auth/signup` | Register a new user   |
+| `POST` | `/auth/signin` | Login and receive JWT |
+
+---
+
+### 👤 User Management
+
+| Method   | Endpoint     | Description                 | Auth |
+| -------- | ------------ | --------------------------- | ---- |
+| `GET`    | `/users/me`  | Get current user profile    | ✅    |
+| `GET`    | `/users`     | List all users (public route) | ✅    |
+| `PATCH`  | `/users/:id` | Update user info            | ✅    |
+| `DELETE` | `/users/:id` | Delete user account         | ✅    |
+
+---
+
+### 🔖 Bookmarks
+
+| Method   | Endpoint         | Description                   | Auth |
+| -------- | ---------------- | ----------------------------- | ---- |
+| `POST`   | `/bookmarks`     | Create a new bookmark         | ✅    |
+| `GET`    | `/bookmarks`     | Get all bookmarks of the user | ✅    |
+| `GET`    | `/bookmarks/:id` | Get a specific bookmark       | ✅    |
+| `PATCH`  | `/bookmarks/:id` | Update a bookmark             | ✅    |
+| `DELETE` | `/bookmarks/:id` | Delete a bookmark             | ✅    |
+
+---
+
+## 🗂️ Project Structure
+
+```
+src/
+ ├── auth/
+ │    ├── auth.controller.ts
+ │    ├── auth.service.ts
+ │    ├── auth.module.ts
+ │    ├── decorator/
+ |    ├── dto/
+ │    ├── guard/
+ │    ├── strategy/
+ ├── users/
+ │    ├── users.controller.ts
+ │    ├── users.service.ts
+ │    ├── users.module.ts
+ │    └── dto/
+ ├── bookmarks/
+ │    ├── bookmarks.controller.ts
+ │    ├── bookmarks.service.ts
+ │    ├── bookmarks.module.ts
+ │    └── dto/
+ ├── prisma/
+ │    ├── prisma.service.ts 
+ │    ├── prisma.module.ts
+ ├── app.module.ts
+ └── main.ts
 ```
 
-## Compile and run the project
+---
+
+## ⚙️ Setup & Installation
+
+### 1️⃣ Clone Repository
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+git clone https://github.com/Georjane/hello_nest.git
+cd hello_nest
 ```
 
-## Run tests
+### 2️⃣ Install Dependencies
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+npm install
 ```
 
-## Deployment
+### 3️⃣ Configure Environment
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+Create a `.env` file in the root directory:
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+```env
+DATABASE_URL="postgresql://USER:PASSWORD@HOST:PORT/DATABASE"
+JWT_SECRET="your_jwt_secret"
+```
+
+---
+
+## 🧑‍💻 Running the Application
 
 ```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+npm run start:dev
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+Server starts on:
 
-## Resources
+```
+http://localhost:3000
+```
 
-Check out a few resources that may come in handy when working with NestJS:
+---
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+## 🗃️ Database Setup
 
-## Support
+### 1️⃣ Run Prisma Migrations
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+```bash
+npx prisma migrate dev
+```
 
-## Stay in touch
+## 🌍 Deployment
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+You can deploy this project to:
 
-## License
+* [Render](https://render.com)
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+---
+
+## 🧪 Testing with Postman
+
+Follow these steps to test your API endpoints in Postman:
+
+### 1️⃣ **Signup**
+
+* **POST** → `http://localhost:3000/auth/signup`
+* **Body (JSON):**
+
+```json
+{
+  "email": "testuser@example.com",
+  "password": "password123"
+}
+```
+
+✅ Response:
+Returns user info and JWT token.
+
+---
+
+### 2️⃣ **Signin**
+
+* **POST** → `http://localhost:3000/auth/signin`
+* **Body (JSON):**
+
+```json
+{
+  "email": "testuser@example.com",
+  "password": "password123"
+}
+```
+
+✅ Response:
+
+```json
+{
+  "access_token": "your.jwt.token"
+}
+```
+
+---
+
+### 3️⃣ **Authorize Subsequent Requests**
+
+In Postman:
+
+* Go to the **Authorization** tab
+* Type: **Bearer Token**
+* Paste the token from the signin response
+
+---
+
+### 4️⃣ **Get Current User**
+
+* **GET** → `http://localhost:3000/users/me`
+  ✅ Should return the profile of the logged-in user.
+
+---
+
+### 5️⃣ **Create Bookmark**
+
+* **POST** → `http://localhost:3000/bookmarks`
+* **Body (JSON):**
+
+```json
+{
+  "title": "NestJS Docs",
+  "description": "Official NestJS documentation"
+}
+```
+
+✅ Response:
+Returns the created bookmark.
+
+---
+
+### 6️⃣ **List All Bookmarks**
+
+* **GET** → `http://localhost:3000/bookmarks`
+
+✅ Returns all bookmarks belonging to the current user.
+
+---
+
+### 7️⃣ **Get a Specific Bookmark**
+
+* **GET** → `http://localhost:3000/bookmarks/:id`
+
+---
+
+### 8️⃣ **Update Bookmark**
+
+* **PATCH** → `http://localhost:3000/bookmarks/:id`
+* **Body (JSON):**
+
+```json
+{
+  "title": "Updated Title"
+}
+```
+
+---
+
+### 9️⃣ **Delete Bookmark**
+
+* **DELETE** → `http://localhost:3000/bookmarks/:id`
+
+✅ Should return a success message or status `204`.
+
+---
+
+## 🧾 License
+
+This project is open-source under the [MIT License](LICENSE).
+
+---
+
+## 💡 Author
+
+**Witah Geojane**
+💼 Software Developer | 🌍 Tech Leader | 👩‍💻 Advocate for Women in STEM
+🔗 [LinkedIn](https://www.linkedin.com/in/witah-georjane/)
+
+---
