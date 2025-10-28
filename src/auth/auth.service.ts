@@ -19,7 +19,7 @@ const hash = await argon.hash(dto.password)
         // save the new user in the db
 
         try {
-
+// this does not update lastname and firstname
 const user = await this.prisma.user.create({
     data: {
         email: dto.email,
