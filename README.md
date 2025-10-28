@@ -37,22 +37,23 @@ This API provides user authentication, profile management, and personal bookmark
 * [Project Structure](#-project-structure)
 * [Setup & Installation](#-setup--installation)
 * [Running the Application](#-running-the-application)
-* [Database Setup & Seeding](#-database-setup--seeding)
+* [Database Setup](#-database-setup--seeding)
 * [Environment Variables](#-environment-variables)
 * [Deployment](#-deployment)
 * [Testing with Postman](#-testing-with-postman)
+* [Future Features & Improvements](#-future-features-&-Improvements)
 * [License](#-license)
 
 ---
 
 ## ✨ Features
 
-✅ Secure **JWT authentication**
-✅ User **signup, signin, update, delete**
-✅ Role-based access control (secure routes)
-✅ CRUD operations for **bookmarks**
-✅ Centralized validation with `ValidationPipe`
-✅ Prisma ORM integration with PostgreSQL
+ ✅ Secure **JWT authentication**
+ ✅ User **signup, signin, update, delete**
+ ✅ Role-based access control (secure routes)
+ ✅ CRUD operations for **bookmarks**
+ ✅ Centralized validation with `ValidationPipe`
+ ✅ Prisma ORM integration with PostgreSQL
 
 ---
 
@@ -302,6 +303,21 @@ Returns the created bookmark.
 ✅ Should return a success message or status `204`.
 
 ---
+## 🧩 Future Features & Improvements
+
+Here are some planned upgrades to enhance the API’s functionality and scalability:
+
+| Feature                                 | Description                                                                     |
+| --------------------------------------- | ------------------------------------------------------------------------------- |
+| **Refresh Tokens**                      | Add refresh tokens to improve authentication security.                          |
+| **Role-based Authorization Middleware** | Implement roles like `admin`, `editor`, `user` for fine-grained access control. |
+| **Password Reset & Email Verification** | Integrate Nodemailer or SendGrid for secure password recovery.                  |              
+| **Pagination & Filtering**              | Improve performance for large datasets in `/users` and `/bookmarks`.            |
+| **Search Feature**                      | Enable text-based search on bookmark titles/descriptions.                       |
+| **2FA / OTP Authentication**            | Strengthen account security with optional two-factor authentication.            |
+| **Testing Suite (Jest + Supertest)**    | Add end-to-end and integration tests.                                           |
+| **CI/CD Pipeline**                      | Automate deployment with GitHub Actions or Render Deploy Hooks.                 |
+
 
 ## 🧾 License
 
@@ -312,7 +328,6 @@ This project is open-source under the [MIT License](LICENSE).
 ## 💡 Author
 
 **Witah Geojane**
-💼 Software Developer | 🌍 Tech Leader | 👩‍💻 Advocate for Women in STEM
-🔗 [LinkedIn](https://www.linkedin.com/in/witah-georjane/)
+👩‍💻 Software Developer | 🌍 Tech Leader | 🔗 [LinkedIn](https://www.linkedin.com/in/witah-georjane/)
 
 ---
